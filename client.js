@@ -1,4 +1,5 @@
 const net = require('net');
+const { IP, PORT } = require('./constants');
 const { setupInput } = require('./input');
 const { commands } = require('./input')
 const { handleUserInput } = require('./input')
@@ -6,8 +7,8 @@ let connection;
 
 const connect = function() {
   const conn = net.createConnection({ 
-    host: 'localhost',
-    port: 50541
+    host: IP,
+    port: PORT
   });
   // interpret incoming data as text
   //const time = 300;
@@ -28,4 +29,3 @@ module.exports = { connect };
 
 setupInput(connection);
 
-module.exports = { connect };

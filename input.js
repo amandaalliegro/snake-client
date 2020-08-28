@@ -1,16 +1,11 @@
 // Stores the active TCP connection object.
 const { connect } = require('./client');
+const { commands } = require('./constants');
 const net = require('net');
 const { conn } = require('./client');
 let  connection;
 
-const commands = {
-   w: "Move: up",
-   a: "Move: left",
-   d: "Move: right",
-   s: "Move: down",
-   t: "Say: Ruuuuunnn!!"
-};
+
 
 const handleUserInput = (data) => {// -----> ends the connection by pressing 'ctrl+c'
   if (data === '\u0003') {
