@@ -4,38 +4,32 @@ const net = require('net');
 const { conn } = require('./client');
 let  connection;
 
-const handleUserInput = (data) => { // -----> ends the connection by pressing 'ctrl+c'
+const commands = {
+   w: "Move: up",
+   a: "Move: left",
+   d: "Move: right",
+   s: "Move: down",
+   t: "Say: Ruuuuunnn!!"
+};
+
+const handleUserInput = (data) => {// -----> ends the connection by pressing 'ctrl+c'
   if (data === '\u0003') {
     process.exit();
   }
-};
+  if (commands[data.toLowerCase()]) {
+    connection.write(commands[data.toLowerCase()]);
+  }
+};	
 
-const setupInput = function() {
+const setupInput = (conn) => {
   connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');
   stdin.resume();
-  stdin.on('data', handleUserInput)
-  stdin.on('data', comands)
+  stdin.on('data', handleUserInput);
   return stdin;
 }
-
-const comands = (data) => {
-  let w;
-  let a;
-  let d;
-  let s;
-  if (data.toLowerCase() === w) {
-    connection.write("Move: up");
-  } else if (data.toLowerCase() === a) {
-    connection.write("Move: left");
-  } else if (data.toLowerCase() === s) {
-    connection.write("Move: down");
-  } else if (data.toLowerCase() === d) {
-    connection.write("Move: right");
-  }	
-};
 
 
 
