@@ -1,9 +1,10 @@
 const IP = 'localhost';
-const PORT = '50541'
+const PORT = '50541';
 
 module.exports{
   IP,
-  PORT
+  PORT,
+  commands
 };
 
 const commands = {
